@@ -14,9 +14,7 @@
       font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
     }
 
-    body {
-      color: #fff;
-    }
+    body { color: #fff; }
 
     .screen {
       position: fixed;
@@ -28,7 +26,7 @@
       align-items: center;
       justify-content: center;
       background:
-        radial-gradient(circle at center, rgba(60, 0, 20, 0.45), rgba(0, 0, 0, 0.95) 70%),
+        radial-gradient(circle at center, rgba(60, 0, 20, 0.45), rgba(0, 0, 0, 0.96) 70%),
         #000;
       z-index: 20;
       transition: opacity 0.9s ease, visibility 0.9s ease;
@@ -48,28 +46,28 @@
 
     @keyframes pulseBox {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+      50% { transform: scale(1.035); }
     }
 
     .start-title {
-      font-size: clamp(32px, 6vw, 54px);
+      font-size: clamp(34px, 7vw, 58px);
       font-weight: 700;
       letter-spacing: 2px;
       color: #fff;
-      text-shadow: 0 0 12px rgba(255, 60, 120, 0.9);
+      text-shadow: 0 0 14px rgba(255, 60, 120, 0.95);
       margin-bottom: 22px;
     }
 
     .envelope {
       position: relative;
-      width: min(190px, 44vw);
-      height: min(120px, 28vw);
+      width: min(200px, 46vw);
+      height: min(128px, 30vw);
       margin: 0 auto;
-      background: linear-gradient(180deg, #f4efe8, #ebe4db);
-      border-radius: 4px;
-      box-shadow: 0 0 30px rgba(255, 120, 170, 0.24);
+      background: linear-gradient(180deg, #f6f0e8, #e9e1d6);
+      border-radius: 5px;
+      box-shadow: 0 0 34px rgba(255, 120, 170, 0.26);
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.26);
     }
 
     .envelope:before,
@@ -77,12 +75,12 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, transparent 49%, #d7d0c6 50%, transparent 51%);
+      background: linear-gradient(135deg, transparent 49%, #d4cabd 50%, transparent 51%);
       opacity: 0.9;
     }
 
     .envelope:after {
-      background: linear-gradient(225deg, transparent 49%, #d7d0c6 50%, transparent 51%);
+      background: linear-gradient(225deg, transparent 49%, #d4cabd 50%, transparent 51%);
     }
 
     .heart-icon {
@@ -90,21 +88,22 @@
       left: 50%;
       top: 53%;
       transform: translate(-50%, -50%);
-      font-size: clamp(46px, 8vw, 74px);
-      filter: drop-shadow(0 0 10px rgba(255, 110, 160, 0.65));
+      font-size: clamp(48px, 8vw, 76px);
+      filter: drop-shadow(0 0 12px rgba(255, 110, 160, 0.7));
       animation: heartJump 1.4s ease-in-out infinite;
+      z-index: 2;
     }
 
     @keyframes heartJump {
       0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      50% { transform: translate(-50%, -58%) scale(1.1); }
+      50% { transform: translate(-50%, -58%) scale(1.12); }
     }
 
     .tip {
       margin-top: 18px;
       color: #ffd2e2;
       font-size: clamp(14px, 3vw, 18px);
-      opacity: 0.92;
+      opacity: 0.94;
     }
 
     #showScreen {
@@ -114,9 +113,7 @@
       z-index: 1;
     }
 
-    #showScreen.show {
-      opacity: 1;
-    }
+    #showScreen.show { opacity: 1; }
 
     #heartCanvas,
     #particleCanvas {
@@ -139,18 +136,19 @@
       position: absolute;
       white-space: nowrap;
       font-weight: 700;
-      text-shadow: 0 0 8px rgba(255, 90, 140, 0.22);
+      text-shadow: 0 0 10px rgba(255, 90, 140, 0.20);
       animation-name: drift;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      opacity: 0.85;
+      opacity: 0.72;
+      will-change: transform, opacity;
     }
 
     @keyframes drift {
-      0% { transform: translate3d(0, 0, 0); opacity: 0.2; }
-      10% { opacity: 0.9; }
-      50% { opacity: 0.75; }
-      100% { transform: translate3d(-18px, -22px, 0); opacity: 0.15; }
+      0% { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.18; }
+      12% { opacity: 0.78; }
+      60% { opacity: 0.64; }
+      100% { transform: translate3d(10px, -18px, 0) scale(1.04); opacity: 0.16; }
     }
 
     .center-wrap {
@@ -167,11 +165,11 @@
     .center-message {
       text-align: center;
       color: #ffd0df;
-      font-size: clamp(24px, 5vw, 56px);
-      font-weight: 700;
+      font-size: clamp(24px, 5vw, 58px);
+      font-weight: 800;
       text-shadow:
-        0 0 14px rgba(255, 90, 150, 0.28),
-        0 0 26px rgba(255, 90, 150, 0.20);
+        0 0 16px rgba(255, 90, 150, 0.32),
+        0 0 32px rgba(255, 90, 150, 0.20);
       line-height: 1.5;
       animation: glow 2.2s ease-in-out infinite;
     }
@@ -185,31 +183,25 @@
 
     @keyframes glow {
       0%, 100% { transform: scale(1); opacity: 0.95; }
-      50% { transform: scale(1.03); opacity: 1; }
+      50% { transform: scale(1.035); opacity: 1; }
     }
 
     .music-btn, .restart-btn {
       position: fixed;
       z-index: 10;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
       color: #fff;
       backdrop-filter: blur(10px);
       border-radius: 999px;
       padding: 10px 16px;
       font-size: 14px;
       cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
 
-    .music-btn {
-      top: 18px;
-      right: 18px;
-    }
-
-    .restart-btn {
-      bottom: 18px;
-      right: 18px;
-    }
+    .music-btn { top: 18px; right: 18px; }
+    .restart-btn { bottom: 18px; right: 18px; }
 
     .corner-note {
       position: fixed;
@@ -243,15 +235,8 @@
       border-radius: 50%;
     }
 
-    .heart-pulse::before {
-      left: -7px;
-      top: 0;
-    }
-
-    .heart-pulse::after {
-      left: 0;
-      top: -7px;
-    }
+    .heart-pulse::before { left: -7px; top: 0; }
+    .heart-pulse::after { left: 0; top: -7px; }
 
     @keyframes rise {
       0% {
@@ -266,22 +251,19 @@
     }
       @media (max-width: 640px) {
       .center-message {
-        max-width: 82vw;
+        max-width: 84vw;
         font-size: clamp(24px, 7vw, 36px);
         line-height: 1.65;
       }
-
       .center-sub {
         margin-top: 10px;
         font-size: clamp(13px, 3.6vw, 17px);
         line-height: 1.7;
       }
-
       .corner-note {
-        max-width: 60vw;
+        max-width: 58vw;
         font-size: 11px;
       }
-
       .music-btn, .restart-btn {
         padding: 9px 14px;
         font-size: 13px;
@@ -290,6 +272,8 @@
   </style>
 </head>
 <body>
+  <audio id="bgm" src="mothers_day_original_bgm.mp3" loop preload="auto"></audio>
+
   <div id="startScreen" class="screen">
     <div class="start-box" id="startTrigger">
       <div class="start-title">❤️ 点开 ❤️</div>
@@ -328,15 +312,16 @@
     const particleCanvas = document.getElementById('particleCanvas');
     const heartCtx = heartCanvas.getContext('2d');
     const pCtx = particleCanvas.getContext('2d');
+    const bgm = document.getElementById('bgm');
 
     let started = false;
-    let audioCtx = null;
-    let masterGain = null;
     let musicOn = true;
-    let melodyTimer = null;
     let heartPoints = [];
     let sparks = [];
     let pulseHeartsCreated = false;
+    let animationStarted = false;
+
+    bgm.volume = 0.55;
 
     function resizeCanvas() {
       heartCanvas.width = window.innerWidth;
@@ -371,60 +356,69 @@
       ];
       const colors = ['#ffd2de', '#f7b8ce', '#e9c39a', '#b7d8ff', '#ffc1ea', '#f0d8b4'];
       const isMobile = window.innerWidth < 640;
-      const count = isMobile ? 14 : 24;
+      const margin = isMobile ? 14 : 22;
+      const count = isMobile ? 24 : 38;
 
-      // 中心安全区：尽量不让漂浮文字进入中间祝福文字附近
-      const safeZone = isMobile
-        ? {
-            left: window.innerWidth * 0.14,
-            right: window.innerWidth * 0.86,
-            top: window.innerHeight * 0.28,
-            bottom: window.innerHeight * 0.72
-          }
-        : {
-            left: window.innerWidth * 0.22,
-            right: window.innerWidth * 0.78,
-            top: window.innerHeight * 0.24,
-            bottom: window.innerHeight * 0.76
-          };
+      // 四周分区：避开中心祝福文字，并补足右上角、左下角。
+      const zones = isMobile ? [
+        { x1: 0.05, x2: 0.88, y1: 0.06, y2: 0.18 },
+        { x1: 0.05, x2: 0.88, y1: 0.80, y2: 0.92 },
+        { x1: 0.03, x2: 0.26, y1: 0.22, y2: 0.76 },
+        { x1: 0.70, x2: 0.94, y1: 0.22, y2: 0.76 },
+        { x1: 0.58, x2: 0.90, y1: 0.08, y2: 0.26 },
+        { x1: 0.06, x2: 0.38, y1: 0.72, y2: 0.90 }
+      ] : [
+        { x1: 0.06, x2: 0.88, y1: 0.06, y2: 0.18 },
+        { x1: 0.06, x2: 0.88, y1: 0.80, y2: 0.92 },
+        { x1: 0.04, x2: 0.24, y1: 0.20, y2: 0.78 },
+        { x1: 0.74, x2: 0.94, y1: 0.20, y2: 0.78 },
+        { x1: 0.58, x2: 0.90, y1: 0.08, y2: 0.26 },
+        { x1: 0.06, x2: 0.38, y1: 0.72, y2: 0.90 }
+      ];
+      const zoneOrder = [0, 1, 2, 3, 4, 5, 0, 1, 3, 2, 4, 5];
 
-      function inSafeZone(x, y) {
-        return x > safeZone.left && x < safeZone.right && y > safeZone.top && y < safeZone.bottom;
+      function randomBetween(min, max) {
+        return min + Math.random() * (max - min);
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
       }
 
       for (let i = 0; i < count; i++) {
         const span = document.createElement('span');
         span.className = 'floating-text';
-        span.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+        span.textContent = phrases[i % phrases.length];
+        span.style.fontSize = isMobile ? (12 + Math.random() * 7) + 'px' : (14 + Math.random() * 12) + 'px';
+        span.style.color = colors[i % colors.length];
+        span.style.animationDuration = (11 + Math.random() * 13) + 's';
+        span.style.animationDelay = (-Math.random() * 12) + 's';
+        span.style.opacity = isMobile ? (0.34 + Math.random() * 0.22) : (0.42 + Math.random() * 0.24);
 
-        let x = 0;
-        let y = 0;
-        let tries = 0;
+        // 先测量文字宽高，再放到屏幕内，解决右下角文字被裁切的问题。
+        span.style.left = '-9999px';
+        span.style.top = '-9999px';
+        floatingTexts.appendChild(span);
 
-        do {
-          x = Math.random() * window.innerWidth;
-          y = Math.random() * window.innerHeight;
-          tries++;
-        } while (inSafeZone(x, y) && tries < 100);
+        const w = span.offsetWidth || 120;
+        const h = span.offsetHeight || 24;
+        const zone = zones[zoneOrder[i % zoneOrder.length]];
+
+        let x = randomBetween(window.innerWidth * zone.x1, window.innerWidth * zone.x2);
+        let y = randomBetween(window.innerHeight * zone.y1, window.innerHeight * zone.y2);
+
+        x = clamp(x, margin, window.innerWidth - w - margin);
+        y = clamp(y, margin, window.innerHeight - h - margin);
 
         span.style.left = x + 'px';
         span.style.top = y + 'px';
-        span.style.fontSize = isMobile
-          ? (12 + Math.random() * 8) + 'px'
-          : (14 + Math.random() * 14) + 'px';
-        span.style.color = colors[Math.floor(Math.random() * colors.length)];
-        span.style.animationDuration = (10 + Math.random() * 14) + 's';
-        span.style.animationDelay = (-Math.random() * 12) + 's';
-        span.style.opacity = isMobile ? (0.26 + Math.random() * 0.24) : (0.32 + Math.random() * 0.28);
-
-        floatingTexts.appendChild(span);
       }
     }
 
     function createPulseHearts() {
       if (pulseHeartsCreated) return;
       pulseHeartsCreated = true;
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 24; i++) {
         const item = document.createElement('div');
         item.className = 'heart-pulse';
         item.style.left = (Math.random() * 100) + 'vw';
@@ -439,12 +433,12 @@
 
     function initSparks() {
       sparks = [];
-      const total = window.innerWidth < 640 ? 120 : 180;
+      const total = window.innerWidth < 640 ? 140 : 220;
       for (let i = 0; i < total; i++) {
         sparks.push({
           t: Math.random() * Math.PI * 2,
           offset: Math.random(),
-          size: 2 + Math.random() * 4,
+          size: 2 + Math.random() * 4.4,
           alpha: 0.35 + Math.random() * 0.6
         });
       }
@@ -454,7 +448,7 @@
       heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
       const cx = heartCanvas.width / 2;
       const cy = heartCanvas.height / 2;
-      const pulse = 1 + Math.sin(Date.now() / 500) * 0.04;
+      const pulse = 1 + Math.sin(Date.now() / 500) * 0.045;
 
       heartCtx.save();
       heartCtx.translate(cx, cy);
@@ -463,7 +457,7 @@
         const p = heartPoints[i];
         const x = p.x * pulse;
         const y = p.y * pulse;
-        const glow = 1.5 + (Math.sin(Date.now() / 300 + i * 0.15) + 1) * 1.2;
+        const glow = 1.5 + (Math.sin(Date.now() / 300 + i * 0.15) + 1) * 1.3;
         heartCtx.beginPath();
         heartCtx.fillStyle = `rgba(255, 152, 192, ${0.35 + Math.sin(Date.now() / 900 + i * 0.1) * 0.12})`;
         heartCtx.arc(x, y, glow + 2, 0, Math.PI * 2);
@@ -504,7 +498,7 @@
 
     function animateParticles() {
       pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-      if (particlePool.length < 110) {
+      if (particlePool.length < 130) {
         particlePool.push(createParticle());
       }
 
@@ -527,65 +521,28 @@
       requestAnimationFrame(animateParticles);
     }
 
-    function setupAudio() {
-      if (audioCtx) return;
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = audioCtx.createGain();
-      masterGain.gain.value = 0.05;
-      masterGain.connect(audioCtx.destination);
+    function startAnimationsOnce() {
+      if (animationStarted) return;
+      animationStarted = true;
+      animateHeart();
+      animateParticles();
     }
 
-    function playTone(freq, startTime, duration, type='sine', volume=0.17) {
-      if (!audioCtx || !masterGain) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, startTime);
-      gain.gain.setValueAtTime(0.0001, startTime);
-      gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
-
-      osc.connect(gain);
-      gain.connect(masterGain);
-      osc.start(startTime);
-      osc.stop(startTime + duration + 0.02);
+    async function playMusic() {
+      try {
+        await bgm.play();
+        musicOn = true;
+        musicBtn.textContent = '🔊 音乐开启';
+      } catch (error) {
+        musicOn = false;
+        musicBtn.textContent = '🔇 点我开音乐';
+      }
     }
 
-    function playMelodyLoop() {
-      if (!audioCtx || !musicOn) return;
-      const now = audioCtx.currentTime + 0.05;
-      const notes = [
-        523.25, 659.25, 783.99, 659.25,
-        698.46, 659.25, 587.33, 523.25,
-        523.25, 587.33, 659.25, 783.99,
-        659.25, 587.33, 523.25, 493.88
-      ];
-      const step = 0.36;
-
-      notes.forEach((n, i) => {
-        playTone(n, now + i * step, 0.28, 'triangle', 0.08);
-        playTone(n * 0.5, now + i * step, 0.24, 'sine', 0.035);
-      });
-
-      melodyTimer = setTimeout(() => {
-        if (musicOn) playMelodyLoop();
-      }, notes.length * step * 1000 - 120);
-    }
-
-    function setMusicState(on) {
-      musicOn = on;
-      musicBtn.textContent = on ? '🔊 音乐开启' : '🔇 音乐关闭';
-      if (masterGain) {
-        masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-        masterGain.gain.setTargetAtTime(on ? 0.05 : 0.0001, audioCtx.currentTime, 0.12);
-      }
-      if (on && audioCtx && !melodyTimer) {
-        playMelodyLoop();
-      }
-      if (!on && melodyTimer) {
-        clearTimeout(melodyTimer);
-        melodyTimer = null;
-      }
+    function pauseMusic() {
+      bgm.pause();
+      musicOn = false;
+      musicBtn.textContent = '🔇 音乐关闭';
     }
 
     function startShow() {
@@ -595,36 +552,29 @@
       createFloatingTexts();
       createPulseHearts();
       initSparks();
-      animateHeart();
-      animateParticles();
-      setupAudio();
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      setMusicState(true);
+      startAnimationsOnce();
       startScreen.classList.add('hide');
       showScreen.classList.add('show');
+      bgm.currentTime = 0;
+      playMusic();
     }
 
     startTrigger.addEventListener('click', startShow);
 
     musicBtn.addEventListener('click', () => {
-      if (!audioCtx && started) setupAudio();
-      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-      setMusicState(!musicOn);
+      if (musicOn && !bgm.paused) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
     });
 
     restartBtn.addEventListener('click', () => {
       startScreen.classList.remove('hide');
       showScreen.classList.remove('show');
       started = false;
-      if (melodyTimer) {
-        clearTimeout(melodyTimer);
-        melodyTimer = null;
-      }
-      if (masterGain && audioCtx) {
-        masterGain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.1);
-      }
+      pauseMusic();
+      bgm.currentTime = 0;
     });
 
     window.addEventListener('resize', () => {
@@ -636,8 +586,6 @@
     resizeCanvas();
     createFloatingTexts();
   </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"9b8ad3773e444f3b981204e0f628c94c","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"9b8ad3773e444f3b981204e0f628c94c","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
