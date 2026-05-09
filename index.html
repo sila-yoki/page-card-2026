@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>送给妈妈的母亲节祝福</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    }
+
+    body { color: #fff; }
+
+    .screen {
+      position: fixed;
+      inset: 0;
+    }
+
+    #startScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at center, rgba(60, 0, 20, 0.45), rgba(0, 0, 0, 0.96) 70%),
+        #000;
+      z-index: 20;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    #startScreen.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .start-box {
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      animation: pulseBox 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseBox {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.035); }
+    }
+
+    .start-title {
+      font-size: clamp(34px, 7vw, 58px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 0 14px rgba(255, 60, 120, 0.95);
+      margin-bottom: 22px;
+    }
+
+    .envelope {
+      position: relative;
+      width: min(200px, 46vw);
+      height: min(128px, 30vw);
+      margin: 0 auto;
+      background: linear-gradient(180deg, #f6f0e8, #e9e1d6);
+      border-radius: 5px;
+      box-shadow: 0 0 34px rgba(255, 120, 170, 0.26);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.26);
+    }
+
+    .envelope:before,
+    .envelope:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 49%, #d4cabd 50%, transparent 51%);
+      opacity: 0.9;
+    }
+
+    .envelope:after {
+      background: linear-gradient(225deg, transparent 49%, #d4cabd 50%, transparent 51%);
+    }
+
+    .heart-icon {
+      position: absolute;
+      left: 50%;
+      top: 53%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(48px, 8vw, 76px);
+      filter: drop-shadow(0 0 12px rgba(255, 110, 160, 0.7));
+      animation: heartJump 1.4s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes heartJump {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -58%) scale(1.12); }
+    }
+
+    .tip {
+      margin-top: 18px;
+      color: #ffd2e2;
+      font-size: clamp(14px, 3vw, 18px);
+      opacity: 0.94;
+    }
+
+    #showScreen {
+      background: #000;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      z-index: 1;
+    }
+
+    #showScreen.show { opacity: 1; }
+
+    #heartCanvas,
+    #particleCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #floatingTexts {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .floating-text {
+      position: absolute;
+      white-space: nowrap;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 90, 140, 0.25);
+      animation-name: drift;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      opacity: 0.86;
+    }
+
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.15; }
+      12% { opacity: 0.95; }
+      60% { opacity: 0.76; }
+      100% { transform: translate3d(-24px, -34px, 0) scale(1.05); opacity: 0.12; }
+    }
+
+    .center-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      padding: 20px;
+      z-index: 4;
+    }
+
+    .center-message {
+      text-align: center;
+      color: #ffd0df;
+      font-size: clamp(24px, 5vw, 58px);
+      font-weight: 800;
+      text-shadow:
+        0 0 16px rgba(255, 90, 150, 0.32),
+        0 0 32px rgba(255, 90, 150, 0.20);
+      line-height: 1.5;
+      animation: glow 2.2s ease-in-out infinite;
+    }
+
+    .center-sub {
+      margin-top: 14px;
+      font-size: clamp(14px, 2.8vw, 22px);
+      color: rgba(255, 225, 235, 0.95);
+      font-weight: 500;
+    }
+
+    @keyframes glow {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.035); opacity: 1; }
+    }
+
+    .music-btn, .restart-btn {
+      position: fixed;
+      z-index: 10;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .music-btn { top: 18px; right: 18px; }
+    .restart-btn { bottom: 18px; right: 18px; }
+
+    .corner-note {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 10;
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+      line-height: 1.6;
+      max-width: 52vw;
+    }
+
+    .heart-pulse {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #ff5f9b;
+      transform: rotate(45deg);
+      opacity: 0.72;
+      animation: rise 8s linear infinite;
+      pointer-events: none;
+      filter: blur(0.2px);
+    }
+
+    .heart-pulse::before, .heart-pulse::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart-pulse::before { left: -7px; top: 0; }
+    .heart-pulse::after { left: 0; top: -7px; }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(24px) rotate(45deg) scale(0.6);
+        opacity: 0;
+      }
+      10% { opacity: 0.85; }
+      100% {
+        transform: translateY(-110vh) rotate(45deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgm" src="mothers_day_original_bgm.mp3" loop preload="auto"></audio>
+
+  <div id="startScreen" class="screen">
+    <div class="start-box" id="startTrigger">
+      <div class="start-title">❤️ 点开 ❤️</div>
+      <div class="envelope">
+        <div class="heart-icon">💗</div>
+      </div>
+      <div class="tip">点击开启祝福动画和背景音乐</div>
+    </div>
+  </div>
+
+  <div id="showScreen" class="screen">
+    <canvas id="heartCanvas"></canvas>
+    <canvas id="particleCanvas"></canvas>
+    <div id="floatingTexts"></div>
+
+    <div class="center-wrap">
+      <div class="center-message">
+        亲爱的妈妈，母亲节快乐❤️
+        <div class="center-sub">愿您平安喜乐，健康幸福，永远被爱包围</div>
+      </div>
+    </div>
+  </div>
+
+  <button id="musicBtn" class="music-btn">🔊 音乐开启</button>
+  <button id="restartBtn" class="restart-btn">💌 再看一次</button>
+  <div class="corner-note">给妈妈的一份小惊喜 · 点击右上角可开关音乐</div>
+
+  <script>
+    const startScreen = document.getElementById('startScreen');
+    const showScreen = document.getElementById('showScreen');
+    const startTrigger = document.getElementById('startTrigger');
+    const floatingTexts = document.getElementById('floatingTexts');
+    const musicBtn = document.getElementById('musicBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const heartCanvas = document.getElementById('heartCanvas');
+    const particleCanvas = document.getElementById('particleCanvas');
+    const heartCtx = heartCanvas.getContext('2d');
+    const pCtx = particleCanvas.getContext('2d');
+    const bgm = document.getElementById('bgm');
+
+    let started = false;
+    let musicOn = true;
+    let heartPoints = [];
+    let sparks = [];
+    let pulseHeartsCreated = false;
+    let animationStarted = false;
+
+    bgm.volume = 0.55;
+
+    function resizeCanvas() {
+      heartCanvas.width = window.innerWidth;
+      heartCanvas.height = window.innerHeight;
+      particleCanvas.width = window.innerWidth;
+      particleCanvas.height = window.innerHeight;
+      buildHeartPoints();
+    }
+
+    function buildHeartPoints() {
+      const points = [];
+      const scale = Math.min(window.innerWidth, window.innerHeight) * 0.018;
+      for (let t = 0; t < Math.PI * 2; t += 0.03) {
+        const x = 16 * Math.pow(Math.sin(t), 3);
+        const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+        points.push({ x: x * scale, y: -y * scale });
+      }
+      heartPoints = points;
+    }
+
+    function createFloatingTexts() {
+      floatingTexts.innerHTML = '';
+      const phrases = [
+        "妈妈我爱您❤️",
+        "母亲节快乐❤️",
+        "愿您平安喜乐❤️",
+        "愿您健康幸福❤️",
+        "谢谢妈妈❤️",
+        "永远爱您❤️",
+        "妈妈辛苦了❤️",
+        "愿您每天开心❤️"
+      ];
+      const colors = ['#ffd2de', '#f7b8ce', '#e9c39a', '#b7d8ff', '#ffc1ea', '#f0d8b4'];
+      const count = window.innerWidth < 640 ? 30 : 50;
+
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'floating-text';
+        span.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+        span.style.left = Math.random() * 96 + 'vw';
+        span.style.top = Math.random() * 96 + 'vh';
+        span.style.fontSize = (14 + Math.random() * 22) + 'px';
+        span.style.color = colors[Math.floor(Math.random() * colors.length)];
+        span.style.animationDuration = (7 + Math.random() * 13) + 's';
+        span.style.animationDelay = (-Math.random() * 12) + 's';
+        floatingTexts.appendChild(span);
+      }
+    }
+
+    function createPulseHearts() {
+      if (pulseHeartsCreated) return;
+      pulseHeartsCreated = true;
+      for (let i = 0; i < 24; i++) {
+        const item = document.createElement('div');
+        item.className = 'heart-pulse';
+        item.style.left = (Math.random() * 100) + 'vw';
+        item.style.bottom = (-10 - Math.random() * 30) + 'px';
+        item.style.animationDuration = (6 + Math.random() * 7) + 's';
+        item.style.animationDelay = (-Math.random() * 10) + 's';
+        item.style.opacity = 0.35 + Math.random() * 0.4;
+        item.style.background = ['#ff6da9', '#ff8fbf', '#ff5e93'][Math.floor(Math.random() * 3)];
+        document.body.appendChild(item);
+      }
+    }
+
+    function initSparks() {
+      sparks = [];
+      const total = window.innerWidth < 640 ? 140 : 220;
+      for (let i = 0; i < total; i++) {
+        sparks.push({
+          t: Math.random() * Math.PI * 2,
+          offset: Math.random(),
+          size: 2 + Math.random() * 4.4,
+          alpha: 0.35 + Math.random() * 0.6
+        });
+      }
+    }
+
+    function animateHeart() {
+      heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+      const cx = heartCanvas.width / 2;
+      const cy = heartCanvas.height / 2;
+      const pulse = 1 + Math.sin(Date.now() / 500) * 0.045;
+
+      heartCtx.save();
+      heartCtx.translate(cx, cy);
+
+      for (let i = 0; i < heartPoints.length; i++) {
+        const p = heartPoints[i];
+        const x = p.x * pulse;
+        const y = p.y * pulse;
+        const glow = 1.5 + (Math.sin(Date.now() / 300 + i * 0.15) + 1) * 1.3;
+        heartCtx.beginPath();
+        heartCtx.fillStyle = `rgba(255, 152, 192, ${0.35 + Math.sin(Date.now() / 900 + i * 0.1) * 0.12})`;
+        heartCtx.arc(x, y, glow + 2, 0, Math.PI * 2);
+        heartCtx.fill();
+      }
+
+      for (let i = 0; i < sparks.length; i++) {
+        const s = sparks[i];
+        s.t += 0.008;
+        const base = heartPoints[Math.floor((i / sparks.length) * heartPoints.length)];
+        const fx = base.x * pulse + Math.sin(s.t * 2 + s.offset * 10) * 18;
+        const fy = base.y * pulse + Math.cos(s.t * 2 + s.offset * 10) * 18;
+        heartCtx.beginPath();
+        heartCtx.fillStyle = `rgba(255, 104, 162, ${s.alpha})`;
+        heartCtx.arc(fx, fy, s.size, 0, Math.PI * 2);
+        heartCtx.fill();
+      }
+
+      heartCtx.restore();
+      requestAnimationFrame(animateHeart);
+    }
+
+    const particlePool = [];
+    function createParticle() {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 20 + Math.random() * 90;
+      return {
+        x: particleCanvas.width / 2 + Math.cos(angle) * radius,
+        y: particleCanvas.height / 2 + Math.sin(angle) * radius,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: -0.2 - Math.random() * 0.9,
+        size: 1 + Math.random() * 3,
+        life: 70 + Math.random() * 70,
+        alpha: 0.25 + Math.random() * 0.55,
+        color: ['255,160,200', '255,120,170', '255,210,230'][Math.floor(Math.random() * 3)]
+      };
+    }
+
+    function animateParticles() {
+      pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+      if (particlePool.length < 130) {
+        particlePool.push(createParticle());
+      }
+
+      for (let i = particlePool.length - 1; i >= 0; i--) {
+        const p = particlePool[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 1;
+        p.alpha *= 0.995;
+
+        pCtx.beginPath();
+        pCtx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+        pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        pCtx.fill();
+
+        if (p.life <= 0 || p.y < -20) {
+          particlePool.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    function startAnimationsOnce() {
+      if (animationStarted) return;
+      animationStarted = true;
+      animateHeart();
+      animateParticles();
+    }
+
+    async function playMusic() {
+      try {
+        await bgm.play();
+        musicOn = true;
+        musicBtn.textContent = '🔊 音乐开启';
+      } catch (error) {
+        musicOn = false;
+        musicBtn.textContent = '🔇 点我开音乐';
+      }
+    }
+
+    function pauseMusic() {
+      bgm.pause();
+      musicOn = false;
+      musicBtn.textContent = '🔇 音乐关闭';
+    }
+
+    function startShow() {
+      if (started) return;
+      started = true;
+      resizeCanvas();
+      createFloatingTexts();
+      createPulseHearts();
+      initSparks();
+      startAnimationsOnce();
+      startScreen.classList.add('hide');
+      showScreen.classList.add('show');
+      bgm.currentTime = 0;
+      playMusic();
+    }
+
+    startTrigger.addEventListener('click', startShow);
+
+    musicBtn.addEventListener('click', () => {
+      if (musicOn && !bgm.paused) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+
+    restartBtn.addEventListener('click', () => {
+      startScreen.classList.remove('hide');
+      showScreen.classList.remove('show');
+      started = false;
+      pauseMusic();
+      bgm.currentTime = 0;
+    });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createFloatingTexts();
+      initSparks();
+    });
+
+    resizeCanvas();
+    createFloatingTexts();
+  </script>
+</body>
+</html>
